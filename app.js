@@ -10,7 +10,11 @@
 
         let icon = document.createElement("img")
         icon.src = "images/happy.png"
-        icon.addEventListener("click", () => restartGame())
+        icon.addEventListener("click", () => {
+            restartGame()
+            let body = document.getElementsByTagName("body")[0]
+            body.style.background = "black"
+        })
         icon.addEventListener("mousedown", () => icon.src = "images/happy_pushed.png")
         icon.addEventListener("mouseup", () => icon.src = "images/happy.png")
         app.appendChild(icon)
@@ -73,7 +77,11 @@
                         if (minesweeper.gameWon()) {
                             icon.src = "images/win.png"
                         } else {
+                            img.src = "images/touched_mine.png"
                             icon.src = "images/dead.png"
+
+                            let body = document.getElementsByTagName("body")[0]
+                            body.style.background = "red"
                         }
                     }
                 })
