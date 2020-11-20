@@ -11,6 +11,8 @@
         let icon = document.createElement("img")
         icon.src = "images/happy.png"
         icon.addEventListener("click", () => restartGame())
+        icon.addEventListener("mousedown", () => icon.src = "images/happy_pushed.png")
+        icon.addEventListener("mouseup", () => icon.src = "images/happy.png")
         app.appendChild(icon)
 
         let br = document.createElement("br")
@@ -30,7 +32,8 @@
 
                 const img = document.createElement("img")
                 img.src = "images/tile.png"
-
+                img.addEventListener("mousedown", () => icon.src = "images/suspense.png")
+                img.addEventListener("mouseup", () => icon.src = "images/happy.png")
                 img.addEventListener('click', () => {
                     const tile = minesweeper.discover(columnIdx, lineIdx)
                     if(!minesweeper.gameover()) {
