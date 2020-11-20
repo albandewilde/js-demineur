@@ -1,0 +1,21 @@
+body {
+    background: purple;
+    margin: auto;
+}
+
+table, tr, td {
+    padding: 0;
+    border: 0;
+    border-spacing: 0;
+    user-select: none;
+}
+
+td {
+    text-align: center;
+}
+
+td img {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
