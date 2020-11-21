@@ -3,6 +3,41 @@
     NUMBER_OF_LINES = 15
     NUMBER_OF_COLUMNS = 10
 
+
+    const chooseTileImg = (tile) => {
+        let source = ''
+        switch(tile.minesAround) {
+            case 8:
+                source = 'images/åtta.png'
+                break
+            case 7:
+                source = 'images/sju.png'
+                break
+            case 6:
+                source = 'images/sex.png'
+                break
+            case 5:
+                source = 'images/fem.png'
+                break
+            case 4:
+                source = 'images/fyra.png'
+                break
+            case 3:
+                source = 'images/tre.png'
+                break
+            case 2:
+                source = 'images/två.png'
+                break
+            case 1:
+                source = 'images/ett.png'
+                break
+            default:
+                source = 'images/noll.png'
+                break
+        }
+        return source
+    }
+
     const startGame = () => {
         let minesweeper = Minesweeper(NUMBER_OF_COLUMNS, NUMBER_OF_LINES, MINES_NUMBER)
 
@@ -41,41 +76,17 @@
                 img.addEventListener('click', () => {
                     const tile = minesweeper.discover(columnIdx, lineIdx)
                     if(!minesweeper.gameover()) {
-                        let source = ''
-                        switch(tile.minesAround) {
-                            case 8:
-                                source = 'images/åtta.png'
-                                break
-                            case 7:
-                                source = 'images/sju.png'
-                                break
-                            case 6:
-                                source = 'images/sex.png'
-                                break
-                            case 5:
-                                source = 'images/fem.png'
-                                break
-                            case 4:
-                                source = 'images/fyra.png'
-                                break
-                            case 3:
-                                source = 'images/tre.png'
-                                break
-                            case 2:
-                                source = 'images/två.png'
-                                break
-                            case 1:
-                                source = 'images/ett.png'
-                                break
-                            default:
-                                source = 'images/noll.png'
-                                break
-                        }
-
+                        source = chooseTileImg(tile)
                         box.innerHTML = `<img src=${source}>`;
                     } else {
                         if (minesweeper.gameWon()) {
                             icon.src = "images/win.png"
+
+                            source = chooseTileImg(tile)
+                            box.innerHTML = `<img src=${source}>`;
+
+                            let body = document.getElementsByTagName("body")[0]
+                            body.style.background = "green"
                         } else {
                             img.src = "images/touched_mine.png"
                             icon.src = "images/dead.png"

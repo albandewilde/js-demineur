@@ -65,19 +65,28 @@ const Minesweeper = (width, height, nbMines) => {
 
     const discover = (x, y) => {
         tile = field[y][x]
-        tile.discover = true
-        
-        if(tile.isMined) isGameOver = true
-        else checkIfWon()
+        tile.discovered = true
+
+        if(tile.isMined) {
+            isGameOver = true
+        }
+        if (checkIfWon()) {
+            isGameOver = true
+            isWon = true
+        }
 
         return field[y][x]
     }
 
-    const checkIfWon = () => {
-        if (!field.flatMap(e => e).find(t => !t.discovered && !t.isMined)) {
-            isGameOver = true
-            isWon = true
+    const checkIfWon = function() {
+        for (line of field) {
+            for (tile of line) {
+                if (!tile.discovered && !tile.isMined) {
+                    return false
+                }
+            }
         }
+        return true
     }
 
     return {
